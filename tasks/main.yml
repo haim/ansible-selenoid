@@ -28,13 +28,13 @@
     image: "aerokube/cm:{{ selenoid_cm_version }}"
     volumes:
     - "/var/run/docker.sock:/var/run/docker.sock"
-    - "/root:/root"
+    - "{{ selenoid_config_dir }}:/root"
     - "{{ selenoid_video_host_output_dir }}:{{ selenoid_video_container_output_dir }}"
     env:
       TZ: "{{ selenoid_time_zone }}"
-      OVERRIDE_HOME: "/root"
+      OVERRIDE_HOME: "{{ selenoid_config_dir }}"
     command: >
-      selenoid start
+      selenoid start --vnc
         --config-dir {{ selenoid_config_dir }}
         --version {{ selenoid_version }}
         --tmpfs {{ selenoid_tmpfs }}
@@ -42,4 +42,6 @@
         --last-versions {{ selenoid_browsers_last_versions }}
         --force
         --vnc
-        --args "-limit {{ selenoid_limit }} -listen :{{ selenoid_listen_port }} -video-output-dir={{ selenoid_video_container_output_dir }} -conf /etc/selenoid/browsers.json"
+        --port {{ selenoid_listen_port }}
+        --args "-limit {{ selenoid_limit }}"
+        

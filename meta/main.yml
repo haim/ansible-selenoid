@@ -6,13 +6,13 @@ galaxy_info:
   min_ansible_version: 2.1
   platforms:
   - name: Ubuntu
-    versions:
-     - trusty
-     - xenial
-  galaxy_tags:
-    - containers
-    - docker
-    - selenoid
-    - gridrouter
-    - ubuntu
-dependencies: []
+    # versions:
+    #  - trusty
+    #  - xenial
+#   galaxy_tags:
+#     - containers
+#     - docker
+#     - selenoid
+#     - gridrouter
+#     - ubuntu
+# dependencies: []
